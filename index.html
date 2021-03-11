@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <h1 class="a">my familiy</h1>
+    <p>※名前を押すと出生時の姓（旧姓など）になります</p>
+    <p>※写真を押すと、その方の経歴が表示されます</p>
+
+    <img class="b" src="img/kt.jpg" alt="谷村一成プロフィール" />
+    <!-- ボタンにする？ -->
+    <p class="b1">谷村一成</p>
+    <div class="box1">
+      <img class="c" src="img/jt.jpg" alt="" />
+      <img class="d" src="img/mt.jpg" alt="" />
+    </div>
+    <div class="box2">
+      <p>谷村純一</p>
+      <p class="d1">谷村道</p>
+    </div>
+
+    <div class="box3">
+      <img class="e" src="img/nt.jpg" alt="" />
+      <img class="f" src="img/noimage.jpeg" alt="" />
+      <img class="g" src="img/ky.jpg" alt="" />
+      <img class="h" src="img/kyy.jpg" alt="" />
+    </div>
+
+    <div class="box4">
+      <p class="e1">谷村典保</p>
+      <p class="f1">谷村ツキ子</p>
+      <p class="g1">吉岡楠雄</p>
+      <p class="h1">吉岡喜代江</p>
+    </div>
+
+    <div class="box6">
+      <p class="q">先祖を見る</p>
+      <p class="r">先祖を見る</p>
+      <p class="s">先祖を見る</p>
+      <p class="t">先祖を見る</p>
+    </div>
+
+    <div class="box7">
+      <img class="i" src="img/nbt.jpg" alt="" />
+      <img class="j" src="img/ht.jpg" alt="" />
+      <img class="k" src="img/noimage.jpeg" alt="" />
+      <img class="l" src="img/noimage.jpeg" alt="" />
+      <img class="m" src="img/cy.jpg" alt="" />
+      <img class="n" src="img/uy.jpg" alt="" />
+      <img class="o" src="img/noimage.jpeg" alt="" />
+      <img class="p" src="img/noimage.jpeg" alt="" />
+    </div>
+
+    <div class="box8">
+      <p class="i1">谷村進章</p>
+      <p class="j1">谷村治子</p>
+      <p class="k1">谷口興次郎</p>
+      <p class="l1">谷口ハツヨ</p>
+      <p class="m1">吉岡千代松</p>
+      <p class="n1">吉岡梅野</p>
+      <p class="o1">川村哲男</p>
+      <p class="p1">川村貞子</p>
+    </div>
+
+    <p>
+      下記より、先祖について調査した内容を登録できます。
+      また、過去の記録を確認することもできます。
+    </p>
+
+    <div class="ab">
+      <div class="aa">
+        先祖の名前
+        <input type="text" id="username" />
+      </div>
+
+      <div class="bb">
+        調査結果
+        <textarea name="" id="text" cols="30" rows="10"></textarea>
+      </div>
+    </div>
+
+    <div>
+      <button id="send">登録</button>
+    </div>
+    <div>
+      <button id="check">確認</button>
+    </div>
+
+    <div>
+      <div id="output"></div>
+    </div>
+    　　　　
+
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+
+    <script src="test.js"></script>
+
+    <script src="https://www.gstatic.com/firebasejs/8.3.0/firebase.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+
+    <script>
+      // Your web app's Firebase configuration
+      var firebaseConfig = {
+        apiKey: "",
+        authDomain: "",
+        projectId: "",
+        storageBucket: "",
+        messagingSenderId: "",
+        appId: "",
+        databaseURL: "",
+      };
+      // Initialize Firebase
+      firebase.initializeApp(firebaseConfig);
+      const newPostRef = firebase.database().ref();
+
+      $("#send").on("click", function () {
+        newPostRef.push({
+          username: $("#username").val(""),
+          text: $("#text").val(""),
+        });
+        $("username").val("");
+        $("text").val("");
+        newPostRef.on("child_added", function (date) {
+          let v = date.val();
+          console.log(v, "firebaseのデータが入ってきます");
+          let str = `<p>${v.username}<br>${v.text}</p>`;
+          // $("#output").prepend(str);
+        });
+      });
+
+      $(".aa").text("谷村一成", function () {
+        $(".bb").show(firebase / practice / 谷村一成);
+      });
+    </script>
+  </body>
+</html>
